@@ -3,11 +3,11 @@
     <!-- TODO: Add favorite-cities component to the template. Bind the favorites value to the favoriteCities property. -->
     <h2>vue books. uses the Google API</h2>
     <message-container v-bind:messages="messages"></message-container>
-    <form v-on:submit.prevent="getCities">
+    <form v-on:submit.prevent="getBooks">
         <p><input type="text" v-model="query" placeholder="Gore Vidal"> <button type="submit">Go</button></p>
     </form>
     <load-spinner v-if="showLoading"></load-spinner>
-    <ul class="cities" v-if="results && results.list.length > 0">
+    <!--<ul class="cities" v-if="results && results.list.length > 0">
       <li v-for="(city,index) in results.list" :key="index">
         <h2>{{ city.name }}, {{ city.sys.country }}</h2>
         <p><router-link v-bind:to="{ name: 'CurrentWeather', params: { cityId: city.id } }">View Current Weather</router-link></p>
@@ -17,11 +17,14 @@
         <weather-data v-bind:weatherData="city.main"></weather-data>
         <p><button class="save" v-on:click="saveCity(city)">Save City to Favorites</button></p>
       </li>
-    </ul>
+    </ul>-->
+
   </div>
 </template>
 
 <script>
+//import axios from 'axios';
+
 import {API} from '@/common/api';
 import WeatherSummary from '@/components/WeatherSummary';
 import WeatherData from '@/components/WeatherData';
@@ -43,6 +46,8 @@ export default {
     return {
       results: null,
       query: '',
+      book: '',
+      errors: [],
       showLoading: false,
       messages: [],
       favorites: []
@@ -54,7 +59,23 @@ export default {
 
   },
   methods: {
-    saveCity: function (city) {
+    getBooks: function() {
+      API.get('find', {
+      //axios.get('https://www.googleapis.com/books/v1/volumes',{
+        params: {
+          q: this.query,
+        }
+      })
+      .then( response => {
+        console.log(response);
+        this.results = response.data;
+      })
+      .catch( error => {
+        console.log(error);
+        this.errors.push(error);
+      })
+    }
+    //saveCity: function (city) {
       // TODO: Add logic to add the city to the this.favorites array and to add the city to the favoriteCities array
 
     },
@@ -71,7 +92,7 @@ export default {
       // If there is a cached query, use that data instead of making an API request
       // If not, make the API request and then cache the value for the amount of time specified in `cacheExpiry`
 
-      API.get('find', {
+      /*API.get('find', {
         params: {
             q: this.query
         }
@@ -86,10 +107,10 @@ export default {
           text: error.message
         });
         this.showLoading = false;
-      });
+      });*/
     }
   }
-}
+//}
 </script>
 
 <style scoped>
