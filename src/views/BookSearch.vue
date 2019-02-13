@@ -86,7 +86,7 @@ ul.results {
 .results li {
   display: inline-block;
   margin: 10px;
-  border-style: double;
+  border-style: bold;
   border-width: 3px #333;
   padding: 0.5rem;
   /*width: 200px;*/
@@ -95,11 +95,7 @@ ul.results {
   background: #D9D4D4;
 }
 
-.errors li {
-  color: red;
-  border: solid red 1px;
-  padding: 5px;
-}
+
 h1,
 h2 {
   font-weight: strong;
