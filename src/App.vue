@@ -19,7 +19,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   /*color: #2c3e50;*/
   color: white;
-  text-shadow: 2px 2px #050505;
   width: 75%;
   margin: 20px auto;
 }
