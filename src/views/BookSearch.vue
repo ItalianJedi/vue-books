@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2 id="headline">vue books. uses the Google API</h2>
+    <h2 class="headline">vue books. uses the Google API</h2>
     <!-- <message-container v-bind:messages="messages"></message-container> -->
     <form v-on:submit.prevent="getBooks">
       <p>
@@ -10,15 +10,12 @@
      </form>
           <ul v-if="results && results.items.length>0" class="results">
             <li v-for="item in results.items" class="item">
-              <img v-bind:src="item.volumeInfo.imageLinks.thumbnail" alt="Book Cover">
+              <img v-bind:src="item.volumeInfo.imageLinks.thumbnail" alt="Book Cover" class="cover">
               <h2> {{item.volumeInfo.title}} </h2>
-              <!-- <h2> {{item.volumeInfo.Authors}} </h2> -->
-              <!-- <ul>
-                  <li v-for="author in item.volumeInfo.authors">{{author}}</li>
-              </ul> -->
+              <h4 v-for="author in item.volumeInfo.authors">{{author}}</h4>
               <h4> {{item.volumeInfo.publishedDate}} </h4>
+              <h4> {{item.volumeInfo.publisher}} </h4>
               <p> {{item.volumeInfo.description}} </p>
-              <h3> {{item.volumeInfo.publisher}} </h3>
             </li>
           </ul>
         </div>
@@ -86,10 +83,13 @@ ul.results {
 .results li {
   display: inline-block;
   margin: 10px;
-  border-style: bold;
+  /*border-style: outset;*/
+  -webkit-box-shadow:0px 0px 15px 1px #0f0e0e ;
+  -moz-box-shadow:0px 0px 15px 1px #0f0e0e ;
+  box-shadow:0px 0px 15px 1px #0f0e0e ;
   border-width: 3px #333;
   padding: 0.5rem;
-  /*width: 200px;*/
+  width: 1000px;
   min-height: 100px;
   color: #3B3939;
   background: #D9D4D4;
@@ -101,8 +101,8 @@ h2 {
   font-weight: strong;
 }
 
-#header {
-  text-shadow: 2px 2px #050505;
+.headline {
+   text-shadow:0px 10px 50px #070707;
 }
 
 ul {
@@ -110,6 +110,11 @@ ul {
   padding: 0;
 }
 
+.cover {
+  float:left;
+  margin: 2rem;
+  box-shadow: 4px 4px #4C4C4D;
+}
 /*li {
   display: inline-block;
   width: 300px;
