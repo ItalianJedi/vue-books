@@ -1,42 +1,34 @@
 <template>
   <div>
-    <h2 class="headline">Search vue books.</h2> 
+    <h2 class="headline">vue books. uses the Google Books API</h2>
+    <div class="links">
+      <router-link v-bind:to="{ name: 'CurrentWeather'}">About vue books.</router-link>
+      &bull;
+      <router-link v-bind:to="{ name: 'Forecast'}">About Me</router-link>
+    
       <form v-on:submit.prevent="getBooks">
         <p>
-          <input type="text" v-model="query" placeholder="e.g. Gore Vidal">
+          <input type="text" v-model="query" placeholder="Gore Vidal">
           <button type="submit">Go</button>
         </p>
        </form>
+     </div>
           <ul v-if="results && results.items.length>0" class="results">
-            <transition-group name="resultsIn" enter-active-class="animated fadeInLeftBig">
-            <li v-for="item in results.items" class="item" v-bind:key="item.volumeInfo.title">
-              <img v-bind:src="item.volumeInfo.imageLinks.thumbnail" alt="Book Cover" class="cover" width="200px" height="300px" >
+            <li v-for="item in results.items" class="item">
+              <img v-bind:src="item.volumeInfo.imageLinks.thumbnail" alt="Book Cover" class="cover">
               <h2> {{item.volumeInfo.title}} </h2>
               <h4 v-for="author in item.volumeInfo.authors">{{author}}</h4>
               <h4> {{item.volumeInfo.publishedDate}} </h4>
               <h4> {{item.volumeInfo.publisher}} </h4>
               <p> {{item.volumeInfo.description}} </p>
             </li>
-            </transition-group>
           </ul>
-
-          <!--<div v-else-if="results && results.items.length==0" class="no-results">
-              <h2>No Books Found</h2>
-              <p>Please adjust your search to find more books.</p>
-          </div>
-
-          <ul v-if="errors.length > 0" class="errors">
-            <li v-for="error of errors">
-              {{error.message}}
-            </li>
-          </ul>-->
         </div>
 </template>
 
 <script>
 import axios from 'axios';
 import { API } from "@/common/api";
-import AboutVuebooks from '@/components/AboutVuebooks';
 
 export default {
   name: "BookSearch",
@@ -78,14 +70,17 @@ export default {
           console.log(error);
           this.errors.push(error);
         });
-      }
-    },
-  };
+    }
+   },
+  getCities: function() {
+    this.results = null;
+    this.showLoading = true;
+  }
+};
+//}
 </script>
 
 <style scoped>
-@import "https://cdn.jsdelivr.net/npm/animate.css@3.5.1";
-
 ul.results {
   list-style-type: none;
   padding: 0;
@@ -105,30 +100,6 @@ ul.results {
   background: #D9D4D4;
 }
 
-.no-results {
-  display: inline-block;
-  margin: 10px;
-  /*border-style: outset;*/
-  -webkit-box-shadow:0px 0px 15px 1px #0f0e0e ;
-  -moz-box-shadow:0px 0px 15px 1px #0f0e0e ;
-  box-shadow:0px 0px 15px 1px #0f0e0e ;
-  border-width: 3px #333;
-  padding: 0.5rem;
-  width: 1000px;
-  min-height: 100px;
-  color: #3B3939;
-  background: #D9D4D4;
-}
-
-ul.errors {
-  list-style-type: none;
-}
-.errors li {
-  border: 1px solid red;
-  color: red;
-  padding: 0.5rem;
-  margin: 10px 0;
-}
 
 h1,
 h2 {

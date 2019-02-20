@@ -1,6 +1,13 @@
 <template>
   <div id="app">
     <h1 id="title">vue books.</h1>
+    <nav class="router">
+      <router-link v-bind:to="{ name: 'BookSearch'}">Search</router-link>
+      &emsp;
+      <router-link v-bind:to="{ name: 'AboutVuebooks'}">About vue books.</router-link>
+      &emsp;
+      <router-link v-bind:to="{ name: 'AboutMe'}">About Tony</router-link>
+    </nav>
     <router-view/>
   </div>
 </template>
@@ -12,6 +19,10 @@ export default {
 </script>
 
 <style>
+nav .router {
+  color: white,
+}
+
 #app {
   /*font-family: 'Playfair Display', serif;*/
   font-family: 'Libre Baskerville', serif;

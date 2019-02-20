@@ -4,6 +4,8 @@ import Router from 'vue-router'
 import BookSearch from '@/views/BookSearch'
 import CurrentWeather from '@/views/CurrentWeather'
 import Forecast from '@/views/Forecast'
+import AboutVuebooks from '@/components/AboutVuebooks'
+import AboutMe from '@/components/AboutMe'
 
 Vue.use(Router)
 
@@ -14,15 +16,25 @@ export default new Router({
       name: 'BookSearch',
       component: BookSearch
     },
-    {
-      path: '/:cityId/current',
-      name: 'CurrentWeather',
+    /*{
+      path: '/:CurrentWeather',
+      name: 'About vue books',
       component: CurrentWeather
+    },*/
+    {
+      path: '/AboutVuebooks',
+      name: 'AboutVuebooks',
+      component: AboutVuebooks
     },
     {
+      path: '/AboutMe',
+      name: 'AboutMe',
+      component: AboutMe
+    },
+    /*{
       path: '/:cityId/forecast',
-      name: 'Forecast',
+      name: 'About Me',
       component: Forecast
-    }
+    }*/
   ]
 })

@@ -26,7 +26,7 @@ import CubeSpinner from '@/components/CubeSpinner';
 import MessageContainer from '@/components/MessageContainer';
 
 export default {
-  name: 'CurrentWeather',
+  name: 'About vue books',
   components: {
     'weather-summary': WeatherSummary,
     'weather-data': WeatherData,
