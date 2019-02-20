@@ -8,7 +8,7 @@
         </p>
        </form>
           <ul v-if="results && results.items.length>0" class="results">
-            <transition-group name="resultsIn" enter-active-class="animated fadeInLeftBig">
+            <transition-group name="resultsIn" enter-active-class="wow fadeInLeftBig">
             <li v-for="item in results.items" class="item" v-bind:key="item.volumeInfo.title">
               <img v-bind:src="item.volumeInfo.imageLinks.thumbnail" alt="Book Cover" class="cover" width="200px" height="300px" >
               <h2> {{item.volumeInfo.title}} </h2>
@@ -82,6 +82,7 @@ export default {
     },
   };
 </script>
+
 
 <style scoped>
 @import "https://cdn.jsdelivr.net/npm/animate.css@3.5.1";

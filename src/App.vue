@@ -1,5 +1,7 @@
 <template>
   <div id="app">
+    <!-- <img src="./assets/the_banquet.jpg" alt="" width="500" height="300"> -->
+    <img src="./assets/ErnestHemingway.jpg" alt="Ernest Hemingway" width="225" height="300">
     <h1 id="title">vue books.</h1>
     <nav class="router">
       <router-link v-bind:to="{ name: 'BookSearch'}">Search</router-link>
@@ -8,6 +10,7 @@
       &emsp;
       <router-link v-bind:to="{ name: 'AboutMe'}">About Tony</router-link>
     </nav>
+
     <router-view/>
   </div>
 </template>
@@ -19,6 +22,13 @@ export default {
 </script>
 
 <style>
+img {
+  float: right;
+  margin-right: 250px;
+  border: white solid;
+  box-shadow:0px 10px 50px #1e1e1d;
+}
+
 nav .router {
   color: white,
 }
