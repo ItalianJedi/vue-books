@@ -7,18 +7,21 @@
           <button type="submit">Go</button>
         </p>
        </form>
-          <ul v-if="results && results.items.length>0" class="results">
-            <transition-group name="resultsIn" enter-active-class="wow fadeInLeftBig">
-            <li v-for="item in results.items" class="item" v-bind:key="item.volumeInfo.title">
-              <img v-bind:src="item.volumeInfo.imageLinks.thumbnail" alt="Book Cover" class="cover" width="200px" height="300px" >
-              <h2> {{item.volumeInfo.title}} </h2>
-              <h4 v-for="author in item.volumeInfo.authors">{{author}}</h4>
-              <h4> {{item.volumeInfo.publishedDate}} </h4>
-              <h4> {{item.volumeInfo.publisher}} </h4>
-              <p> {{item.volumeInfo.description}} </p>
-            </li>
-            </transition-group>
-          </ul>
+       
+        <ul v-if="results && results.items.length>0" class="results">
+          <br>
+          <hr>
+          <transition-group name="resultsIn" enter-active-class="wow fadeInLeftBig">
+          <li v-for="item in results.items" class="item" v-bind:key="item.volumeInfo.title">
+            <img v-bind:src="item.volumeInfo.imageLinks.thumbnail" alt="Book Cover" class="cover" width="200px" height="300px" >
+            <h2> {{item.volumeInfo.title}} </h2>
+            <h4 v-for="author in item.volumeInfo.authors">{{author}}</h4>
+            <h4> {{item.volumeInfo.publishedDate}} </h4>
+            <h4> {{item.volumeInfo.publisher}} </h4>
+            <p> {{item.volumeInfo.description}} </p>
+          </li>
+          </transition-group>
+        </ul>
 
           <!--<div v-else-if="results && results.items.length==0" class="no-results">
               <h2>No Books Found</h2>
@@ -37,6 +40,8 @@
 import axios from 'axios';
 import { API } from "@/common/api";
 import AboutVuebooks from '@/components/AboutVuebooks';
+
+
 
 export default {
   name: "BookSearch",
@@ -81,6 +86,7 @@ export default {
       }
     },
   };
+
 </script>
 
 
@@ -104,6 +110,27 @@ ul.results {
   min-height: 100px;
   color: #3B3939;
   background: #D9D4D4;
+}
+
+/*Got the following from CSS Tricks */
+hr {
+    overflow: visible; /* For IE */
+    height: 30px;
+    border-style: solid;
+    border-color: white;
+    border-width: 1px 0 0 0;
+    border-radius: 20px;
+}
+
+hr:before { /* Not really supposed to work, but does */
+    display: block;
+    content: "";
+    height: 30px;
+    margin-top: -31px;
+    border-style: solid;
+    border-color: white;
+    border-width: 0 0 1px 0;
+    border-radius: 20px;
 }
 
 .no-results {

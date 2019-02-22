@@ -6,6 +6,7 @@ import CurrentWeather from '@/views/CurrentWeather'
 import Forecast from '@/views/Forecast'
 import AboutVuebooks from '@/components/AboutVuebooks'
 import AboutMe from '@/components/AboutMe'
+import VueWow from 'vue-wow'
 
 Vue.use(Router)
 
