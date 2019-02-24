@@ -9,7 +9,6 @@ export const API = axios.create({
 API.interceptors.request.use(function (config) {
     // Set common parameters for each request to the API.
 
-    // TODO: Figure out if I really need an APPID
     config.params.APPID = 'AIzaSyDy0BTNGNSUteQAjcO2g4-VIXVZQpsHmEA';
     config.params.units = 'imperial';
 

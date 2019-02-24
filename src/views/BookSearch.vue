@@ -11,15 +11,15 @@
         <ul v-if="results && results.items.length>0" class="results">
           <br>
           <hr>
-          <transition-group name="resultsIn" enter-active-class="wow fadeInLeftBig">
-          <li v-for="item in results.items" class="item" v-bind:key="item.volumeInfo.title">
-            <img v-bind:src="item.volumeInfo.imageLinks.thumbnail" alt="Book Cover" class="cover" width="200px" height="300px" >
-            <h2> {{item.volumeInfo.title}} </h2>
-            <h4 v-for="author in item.volumeInfo.authors">{{author}}</h4>
-            <h4> {{item.volumeInfo.publishedDate}} </h4>
-            <h4> {{item.volumeInfo.publisher}} </h4>
-            <p> {{item.volumeInfo.description}} </p>
-          </li>
+          <transition-group name="resultsIn" enter-active-class="animated fadeInLeftBig">
+            <li v-for="item in results.items" class="item" v-bind:key="item.volumeInfo.title">
+              <img v-bind:src="item.volumeInfo.imageLinks.thumbnail" alt="Book Cover" class="cover" width="200px" height="300px" >
+              <h2> {{item.volumeInfo.title}} </h2>
+              <h4 v-for="author in item.volumeInfo.authors">{{author}}</h4>
+              <h4> {{item.volumeInfo.publishedDate}} </h4>
+              <h4> {{item.volumeInfo.publisher}} </h4>
+              <p> {{item.volumeInfo.description}} </p>
+            </li>
           </transition-group>
         </ul>
 
@@ -177,14 +177,6 @@ ul {
   margin: 2rem;
   box-shadow: 4px 4px #4C4C4D;
 }
-/*li {
-  display: inline-block;
-  width: 300px;
-  min-height: 300px;
-  border: solid 1px #e8e8e8;
-  padding: 10px;
-  margin: 5px;
-}*/
 
 a {
   color: #42b983;
