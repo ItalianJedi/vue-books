@@ -15,9 +15,11 @@
             <li v-for="item in results.items" class="item" v-bind:key="item.volumeInfo.title">
               <img v-bind:src="item.volumeInfo.imageLinks.thumbnail" alt="Book Cover" class="cover" width="200px" height="300px" >
               <h2> {{item.volumeInfo.title}} </h2>
-              <h4 v-for="author in item.volumeInfo.authors">{{author}}</h4>
-              <h4> {{item.volumeInfo.publishedDate}} </h4>
+              <p v-for="author in item.volumeInfo.authors">by <b>{{author}}</b></p>
+              <h4> {{new Date(item.volumeInfo.publishedDate).toLocaleDateString("en-US")}} </h4>
               <h4> {{item.volumeInfo.publisher}} </h4>
+              <h4> {{item.volumeInfo.pageCount}} pg </h4>
+              <h4 v-for="category in item.volumeInfo.categories">{{category}}</h4>
               <p> {{item.volumeInfo.description}} </p>
             </li>
           </transition-group>
