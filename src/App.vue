@@ -23,11 +23,15 @@ export default {
 </script>
 
 <style>
+@media only screen and (min-width: 600px) {
 img {
   float: right;
   margin-right: 250px;
   border: white solid;
   box-shadow:0px 10px 50px #1e1e1d;
+  /*max-width: 100%;
+  height: auto;*/
+}
 }
 
 .active {

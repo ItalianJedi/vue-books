@@ -3,12 +3,13 @@
     <h2 class="headline">Search vue books.</h2> 
       <form v-on:submit.prevent="getBooks">
         <p>
+          <label for="search">Search for Book or Author: </label>
           <input type="text" v-model="query" placeholder="e.g. Gore Vidal">
           <button type="submit">Go</button>
         </p>
        </form>
        
-        <ul v-if="results && results.items.length>0" class="results">
+        <ul v-if="results && results.items.length> 0" class="results">
           <br>
           <hr>
           <transition-group name="resultsIn" enter-active-class="animated fadeInLeftBig">
@@ -25,16 +26,16 @@
           </transition-group>
         </ul>
 
-          <!--<div v-else-if="results && results.items.length==0" class="no-results">
+        <div v-else-if="results && results.length === 0" class="no-results">
               <h2>No Books Found</h2>
               <p>Please adjust your search to find more books.</p>
           </div>
 
-          <ul v-if="errors.length > 0" class="errors">
+        <ul v-if="errors.length > 0" class="errors">
             <li v-for="error of errors">
               {{error.message}}
             </li>
-          </ul>-->
+          </ul>
         </div>
 </template>
 
@@ -99,6 +100,9 @@ ul.results {
   list-style-type: none;
   padding: 0;
 }
+
+
+@media only screen and (min-width: 600px) {
 .results li {
   display: inline-block;
   margin: 10px;
@@ -113,6 +117,8 @@ ul.results {
   color: #3B3939;
   background: #D9D4D4;
 }
+}
+
 
 /*Got the following from CSS Tricks */
 hr {
