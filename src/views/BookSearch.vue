@@ -4,7 +4,7 @@
       <form v-on:submit.prevent="getBooks">
         <p>
           <label for="search">Search for Book or Author: </label>
-          <input type="text" v-model="query" placeholder="e.g. Gore Vidal">
+          <input type="text" v-model="query" name="search" placeholder="e.g. Gore Vidal">
           <button type="submit">Go</button>
         </p>
        </form>
