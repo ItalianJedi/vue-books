@@ -8,12 +8,13 @@
         </p>
        </form>
        
-        <ul v-if="results && results.items.length> 0" class="results">
+        <ul v-if="results && results.items.length > 0" class="results">
           <br>
           <hr>
           <transition-group name="resultsIn" enter-active-class="animated fadeInLeftBig">
-            <li v-for="item in results.items" class="item" v-bind:key="item.volumeInfo.title">
-              <img v-bind:src="item.volumeInfo.imageLinks.thumbnail" alt="Book Cover" class="cover" width="200px" height="300px" >
+            <li v-for="item in results.items" class="item" v-bind:key="item.id">
+              <div v-if="item.volumeInfo.imageLinks"><img v-bind:src="item.volumeInfo.imageLinks.thumbnail" v-bind:alt="item.volumeInfo.title" class="cover" width="150px" height="250px"></div>
+              <!-- <div v-else="item.volumeInfo.imageLinks.thumbnail === 0"><img v-bind:src="./assets/No_image_available.jpg" alt="" class="cover"></div> -->
               <h2> {{item.volumeInfo.title}} </h2>
               <p v-for="author in item.volumeInfo.authors">by <b>{{author}}</b></p>
               <h4> {{new Date(item.volumeInfo.publishedDate).toLocaleDateString("en-US")}} </h4>
@@ -25,15 +26,13 @@
           </transition-group>
         </ul>
 
-        <div v-else-if="results && results.length === 0" class="no-results">
+        <div v-else-if="results && results.items.length === 0" class="no-results">
               <h2>No Books Found</h2>
               <p>Please adjust your search to find more books.</p>
-          </div>
+        </div>
 
         <ul v-if="errors.length > 0" class="errors">
-            <li v-for="error of errors">
               {{error.message}}
-            </li>
           </ul>
         </div>
 </template>
@@ -183,6 +182,16 @@ ul {
   float:left;
   margin: 2rem;
   box-shadow: 4px 4px #4C4C4D;
+}
+
+ul.errors {
+  list-style-type: none;
+}
+.errors li {
+  border: 1px solid red;
+  color: red;
+  padding: 0.5rem;
+  margin: 10px 0;
 }
 
 a {
