@@ -23,16 +23,17 @@ export default {
 </script>
 
 <style>
-@media only screen and (min-width: 600px) {
+/*@media only screen and (min-width: 600px) {*/
 img {
-  float: right;
-  margin-right: 250px;
+  float: left;
+  max-width: 100%;
+  margin-right: 175px;
   border: white solid;
   box-shadow:0px 10px 50px #1e1e1d;
   /*max-width: 100%;
   height: auto;*/
 }
-}
+
 
 .active {
   color: white;
@@ -62,5 +63,14 @@ body {
 
 h1 {
   font-size: 7rem;
+}
+
+@media only screen and (max-width: 500px) {
+  img {
+    text-align: center;
+    border: white solid;
+    box-shadow:0px 10px 50px #1e1e1d;
+  }
+
 }
 </style>

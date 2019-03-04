@@ -26,7 +26,7 @@
           </transition-group>
         </ul>
 
-        <div v-else-if="results && results.items.length === 0" class="no-results">
+        <div v-else-if="result && results.items.length === 0" class="no-results">
               <h2>No Books Found</h2>
               <p>Please adjust your search to find more books.</p>
         </div>
@@ -99,8 +99,29 @@ ul.results {
   padding: 0;
 }
 
+/*.results li {
+  display: inline-block;
+  margin: 10px;
+  /*border-style: outset;*/
+  /*-webkit-box-shadow:0px 0px 15px 1px #0f0e0e ;
+  -moz-box-shadow:0px 0px 15px 1px #0f0e0e ;
+  box-shadow:0px 0px 15px 1px #0f0e0e ;
+  border-width: 3px #333;
+  padding: 0.5rem;
+  width: 1000px;
+  min-height: 100px;
+  color: #3B3939;
+  background: #D9D4D4;
+}*/
 
-@media only screen and (min-width: 600px) {
+
+@media only screen and (max-width: 2000px) {
+
+  ul.results {
+  list-style-type: none;
+  padding: 0;
+}
+
 .results li {
   display: inline-block;
   margin: 10px;
@@ -110,7 +131,6 @@ ul.results {
   box-shadow:0px 0px 15px 1px #0f0e0e ;
   border-width: 3px #333;
   padding: 0.5rem;
-  width: 1000px;
   min-height: 100px;
   color: #3B3939;
   background: #D9D4D4;
