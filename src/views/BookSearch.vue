@@ -8,10 +8,12 @@
         </p>
        </form>
        
+        
         <ul v-if="results && results.items.length > 0" class="results">
           <br>
           <hr>
-          <transition-group name="resultsIn" enter-active-class="animated fadeInLeftBig">
+          <spinner v-if="showSpinner"></spinner>
+          <transition-group name="resultsIn" enter-active-class="animated fadeInLeftBig" appear>
             <li v-for="item in results.items" class="item" v-bind:key="item.id">
               <div v-if="item.volumeInfo.imageLinks"><img v-bind:src="item.volumeInfo.imageLinks.thumbnail" v-bind:alt="item.volumeInfo.title" class="cover" width="150px" height="250px"></div>
               <!-- <div v-else="item.volumeInfo.imageLinks.thumbnail === 0"><img v-bind:src="./assets/No_image_available.jpg" alt="" class="cover"></div> -->
@@ -19,14 +21,14 @@
               <p v-for="author in item.volumeInfo.authors">by <b>{{author}}</b></p>
               <h4> {{new Date(item.volumeInfo.publishedDate).toLocaleDateString("en-US")}} </h4>
               <h4> {{item.volumeInfo.publisher}} </h4>
-              <h4> {{item.volumeInfo.pageCount}} pg </h4>
+              <h4> {{item.volumeInfo.pageCount}} pages </h4>
               <h4 v-for="category in item.volumeInfo.categories">{{category}}</h4>
               <p> {{item.volumeInfo.description}} </p>
             </li>
           </transition-group>
         </ul>
 
-        <div v-else-if="result && results.items.length === 0" class="no-results">
+        <div v-if="results && results.items.length === 0" class="no-results">
               <h2>No Books Found</h2>
               <p>Please adjust your search to find more books.</p>
         </div>
@@ -41,24 +43,28 @@
 import axios from 'axios';
 import { API } from "@/common/api";
 import AboutVuebooks from '@/components/AboutVuebooks';
+import CubeSpinner from '@/components/CubeSpinner';
 
 
 
 export default {
   name: "BookSearch",
+  components: {
+    spinner: CubeSpinner,
+  },
   data() {
     return {
       results: null,
       errors:[],
       query: "",
       book: "",
-
+      showSpinner: false,
     };
   },
 
   methods: {
     getBooks: function() {
-
+        this.showSpinner = true;
       // axios({
       //   url: "https://www.googleapis.com/books/v1/volumes",
       //   method: "get",
@@ -74,13 +80,13 @@ export default {
           q: this.query
         }
       })
-
-  
         .then(response => {
+          this.showSpinner = false;
           console.log(response);
           this.results = response.data;
         })
         .catch(error => {
+          this.showSpinner = false;
           console.log(error);
           this.errors.push(error);
         });
@@ -159,11 +165,11 @@ hr:before { /* Not really supposed to work, but does */
     border-radius: 20px;
 }
 
-.no-results {
+/*.no-results {
   display: inline-block;
   margin: 10px;
   /*border-style: outset;*/
-  -webkit-box-shadow:0px 0px 15px 1px #0f0e0e ;
+  /*-webkit-box-shadow:0px 0px 15px 1px #0f0e0e ;
   -moz-box-shadow:0px 0px 15px 1px #0f0e0e ;
   box-shadow:0px 0px 15px 1px #0f0e0e ;
   border-width: 3px #333;
@@ -172,7 +178,7 @@ hr:before { /* Not really supposed to work, but does */
   min-height: 100px;
   color: #3B3939;
   background: #D9D4D4;
-}
+}*/
 
 ul.errors {
   list-style-type: none;
