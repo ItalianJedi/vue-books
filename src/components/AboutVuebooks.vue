@@ -18,6 +18,8 @@
 
 <style scoped>
   .component {
+    margin-top: 10%;
+    text-align: center;
     font-weight: strong;
     min-height: 400px;
     text-shadow:0px 10px 50px #070707;

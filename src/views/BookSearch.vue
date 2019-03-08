@@ -28,15 +28,15 @@
           </transition-group>
         </ul>
 
-        <div v-if="results && results.items.length === 0" class="no-results">
+        <div v-if="item && results.item.length === 0" class="no-results">
               <h2>No Books Found</h2>
               <p>Please adjust your search to find more books.</p>
         </div>
 
         <ul v-if="errors.length > 0" class="errors">
               {{error.message}}
-          </ul>
-        </div>
+        </ul>
+    </div>
 </template>
 
 <script>

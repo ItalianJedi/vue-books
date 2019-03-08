@@ -2,7 +2,8 @@
   <div class="component">
     <h2>{{ message }}</h2>
     <p>Tony is a Web Development Certificate student from Seattle University.</p>
-    <p>I will update this later.</p>
+    <br>
+    <p>I like books so it makes sense to make an app for a book search.</p>
   </div>
 </template>
 
@@ -18,6 +19,8 @@
 
 <style scoped>
   .component {
+    margin-top: 10%;
+    text-align: center;
     font-weight: strong;
     min-height: 400px;
     text-shadow:0px 10px 50px #070707;
