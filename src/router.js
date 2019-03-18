@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import BookSearch from '@/views/BookSearch'
 import AboutVuebooks from '@/components/AboutVuebooks'
 import AboutMe from '@/components/AboutMe'
+import 'wowjs/dist/wow.min.js'
 
 Vue.use(Router)
 

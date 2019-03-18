@@ -21,8 +21,8 @@
       <spinner v-if="showSpinner"></spinner>
       <transition-group name="resultsIn" enter-active-class="animated fadeInLeftBig" appear>
         <li v-for="item in results.items" class="item" v-bind:key="item.id">
-          <div v-if="item.volumeInfo.imageLinks">
-            <img
+          <div v-if="item.volumeInfo.imageLinks" >
+            <img 
               v-bind:src="item.volumeInfo.imageLinks.thumbnail"
               v-bind:alt="item.volumeInfo.title"
               class="cover"
@@ -66,7 +66,7 @@ import CubeSpinner from "@/components/CubeSpinner";
 export default {
   name: "BookSearch",
   components: {
-    spinner: CubeSpinner
+    spinner: CubeSpinner,
   },
   data() {
     return {
@@ -74,8 +74,17 @@ export default {
       errors: [],
       query: "",
       book: "",
-      showSpinner: false
+      showSpinner: false,
     };
+  },
+
+  init() {
+    // JavaScript to be fired on all pages
+    const wow = new Wow();
+    wow.init();
+  },
+  finalize() {
+    // JavaScript to be fired on all pages, after page specific JS is fired
   },
 
   methods: {
@@ -90,6 +99,8 @@ export default {
 
       //   }
       // })
+      
+
 
       API.get("", {
         params: {
@@ -118,6 +129,7 @@ export default {
 
 <style scoped>
 @import "https://cdn.jsdelivr.net/npm/animate.css@3.5.1";
+@import "https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.js";
 
 ul.results {
   list-style-type: none;
@@ -182,11 +194,11 @@ hr:before {
   border-radius: 20px;
 }
 
-/*.no-results {
+.no-results {
   display: inline-block;
   margin: 10px;
   /*border-style: outset;*/
-/*-webkit-box-shadow:0px 0px 15px 1px #0f0e0e ;
+  -webkit-box-shadow:0px 0px 15px 1px #0f0e0e ;
   -moz-box-shadow:0px 0px 15px 1px #0f0e0e ;
   box-shadow:0px 0px 15px 1px #0f0e0e ;
   border-width: 3px #333;
@@ -195,7 +207,7 @@ hr:before {
   min-height: 100px;
   color: #3B3939;
   background: #D9D4D4;
-}*/
+}
 
 ul.errors {
   list-style-type: none;
